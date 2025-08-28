@@ -14,6 +14,13 @@ class LectureResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'topic' => $this->topic,
+            'description' => $this->description,
+            'position' => $this->whenPivotLoaded('student_group_lecture', fn() => $this->pivot->position),
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
+        ];
     }
 }
