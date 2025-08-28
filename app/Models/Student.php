@@ -8,6 +8,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Student extends Model
 {
+    protected $fillable = [
+        'name',
+        'email',
+        'student_group_id',
+    ];
+
     public function studentGroup(): BelongsTo
     {
         return $this->belongsTo(StudentGroup::class);
