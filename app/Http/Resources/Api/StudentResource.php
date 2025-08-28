@@ -21,6 +21,7 @@ class StudentResource extends JsonResource
             'student_group_id' => $this->student_group_id,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
+            'lectures' => LectureResource::collection($this->whenLoaded('lectures'))
         ];
     }
 }

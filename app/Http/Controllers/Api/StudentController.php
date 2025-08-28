@@ -24,6 +24,13 @@ class StudentController extends Controller
         );
     }
 
+    public function show(Student $student): StudentResource
+    {
+        $student->load('lectures');
+
+        return new StudentResource($student);
+    }
+
     public function update(UpdateStudentRequest $request, Student $student): StudentResource
     {
         $student->update($request->validated());

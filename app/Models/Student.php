@@ -21,6 +21,13 @@ class Student extends Model
 
     public function lectures(): HasManyThrough
     {
-        return $this->hasManyThrough(Lecture::class, StudentGroup::class);
+        return $this->hasManyThrough(
+            Lecture::class,
+            StudentGroupLecture::class,
+            'student_group_id',
+            'id',
+            'student_group_id',
+            'lecture_id',
+        );
     }
 }

@@ -23,7 +23,7 @@ class LectureController extends Controller
         );
     }
 
-    public function show(Lecture $lecture)
+    public function show(Lecture $lecture): LectureResource
     {
         $lecture->load('studentGroups');
         $lecture->load('students');
