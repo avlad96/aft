@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Lecture extends Model
 {
+    protected $fillable = [
+        'topic',
+        'description',
+    ];
+
     public function studentGroups(): BelongsToMany
     {
         return $this->belongsToMany(StudentGroup::class, 'student_group_lecture')
