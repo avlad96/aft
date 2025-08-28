@@ -30,6 +30,13 @@ class StudentGroupController extends Controller
         );
     }
 
+    public function show(StudentGroup $studentGroup): StudentGroupResource
+    {
+        $studentGroup->load('students');
+
+        return new StudentGroupResource($studentGroup);
+    }
+
     public function update(StoreStudentGroupRequest $request, StudentGroup $studentGroup): StudentGroupResource
     {
         $studentGroup->update($request->validated());
