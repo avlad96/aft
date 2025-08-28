@@ -23,6 +23,14 @@ class LectureController extends Controller
         );
     }
 
+    public function show(Lecture $lecture)
+    {
+        $lecture->load('studentGroups');
+        $lecture->load('students');
+
+        return new LectureResource($lecture);
+    }
+
     public function update(StoreLectureRequest $request, Lecture $lecture): LectureResource
     {
         $lecture->update($request->validated());

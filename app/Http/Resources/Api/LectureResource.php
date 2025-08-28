@@ -21,6 +21,8 @@ class LectureResource extends JsonResource
             'position' => $this->whenPivotLoaded('student_group_lecture', fn() => $this->pivot->position),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
+            'student_groups' => StudentGroupResource::collection($this->whenLoaded('studentGroups')),
+            'students' => StudentResource::collection($this->whenLoaded('students')),
         ];
     }
 }

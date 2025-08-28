@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 class Lecture extends Model
 {
@@ -19,8 +20,15 @@ class Lecture extends Model
             ->orderBy('position');
     }
 
-    public function students(): BelongsToMany
+    public function students(): HasManyThrough
     {
-        return $this->belongsToMany(Student::class, 'lecture_student');
+        return $this->hasManyThrough(
+            Student::class,
+            StudentGroupLecture::class,
+            'lecture_id',
+            'student_group_id',
+            'id',
+            'student_group_id',
+        );
     }
 }

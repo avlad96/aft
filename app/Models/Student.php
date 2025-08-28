@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 class Student extends Model
 {
@@ -19,8 +19,8 @@ class Student extends Model
         return $this->belongsTo(StudentGroup::class);
     }
 
-    public function lectures(): BelongsToMany
+    public function lectures(): HasManyThrough
     {
-        return $this->belongsToMany(Lecture::class, 'lecture_student');
+        return $this->hasManyThrough(Lecture::class, StudentGroup::class);
     }
 }
